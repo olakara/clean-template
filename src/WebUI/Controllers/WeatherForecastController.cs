@@ -11,7 +11,7 @@ namespace CleanTemplate.WebUI.Controllers
         [HttpGet]
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
-            throw new Exception("CustomError");
+            
             return await Mediator.Send(new GetWeatherForecastsQuery());
         }
     }
