@@ -92,49 +92,25 @@ namespace CleanTemplate.WebUI
             }
 
             app.UseMiddleware<ExceptionMiddleware>();
-
             app.UseHealthChecks("/health");
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseSerilogRequestLogging();
-            //if (!env.IsDevelopment())
-            //{
-            //    app.UseSpaStaticFiles();
-            //}
+            app.UseHttpsRedirection();          
+            app.UseSerilogRequestLogging();            
 
             app.UseSwaggerUi3(settings =>
             {
                 settings.Path = "/swagger";
-                settings.DocumentPath = "/api/specification.json";
+                settings.DocumentPath = "/api/specification.json";                
             });
 
             app.UseRouting();
-
-            app.UseAuthentication();
-            app.UseIdentityServer();
-            app.UseAuthorization();
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
                 
-            });
-
-            //app.UseSpa(spa =>
-            //{
-            //    // To learn more about options for serving an Angular SPA from ASP.NET Core,
-            //    // see https://go.microsoft.com/fwlink/?linkid=864501
-
-            //    spa.Options.SourcePath = "ClientApp";
-
-            //    if (env.IsDevelopment())
-            //    {
-            //        //spa.UseAngularCliServer(npmScript: "start");
-            //        spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
-            //    }
-            //});
+            });            
         }
     }
 }
